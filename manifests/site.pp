@@ -77,5 +77,19 @@ node default {
 		owner  => 'root',
 		mode => '0744',
 	}	
+	
+	file { '/var/www/index.php':
+		ensure => 'file',
+		source => 'puppet:///modules/site/common/index.php',
+		owner  => 'root',
+		require => Package["apache2"],
+	}	
+	
+	file { '/var/www/index.html':
+		ensure => 'absent',
+		require => Package["apache2"],
+	}	
+	
+	
     
 }
