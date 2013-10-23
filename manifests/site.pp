@@ -57,6 +57,14 @@ node default {
 	    require => Package["apache2"],
 	}	
 
+
+
+	exec { "a2enmod rewrite":
+		command => 'a2enmod rewrite',
+		path => ["/usr/bin", "/usr/sbin", "/usr/local/bin"],		
+		require => Package["apache2"],
+		notify  => Service["apache2"],
+	}
 	
     
     class { 'composer':
