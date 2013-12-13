@@ -3,14 +3,9 @@ node default {
 	exec { "apt-update":
 		command => 'apt-get update',
 		path => ["/usr/bin", "/usr/sbin", "/usr/local/bin"],			
-		before => Exec['apt-upgrade']
 	}
-	
-	exec { "apt-upgrade":
-		command => 'apt-get upgrade',
-		path => ["/usr/bin", "/usr/sbin", "/usr/local/bin"],		
-	}
-	
+
+	Exec["apt-update"] -> Package <| |>
 
 	include git
 
