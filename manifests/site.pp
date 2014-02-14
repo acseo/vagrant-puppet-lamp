@@ -16,6 +16,14 @@ node default {
   		}
 	}
 
+	database_user { 'root@33.33.33.%':
+		password_hash => mysql_password('root')
+	}		
+
+	database_grant { 'root@33.33.33.%/*.*':
+		privileges => ['all'] ,
+	}	
+
 
 	package {
 		"apache2":
