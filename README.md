@@ -1,15 +1,14 @@
-# Vagrant / Puppet / Lamp provisionning #
+# Vagrant / Puppet / Lamp provisionning
 
 This Project provide files that can be used to create de Web Developpement environnement thanks to Vagrant and Puppet.
 
-## Requirements ##
+## Requirements
 - Vagrant (http://www.vagrantup.com/)
 - A virtualization solution (such as VirtualBox : https://www.virtualbox.org/)
 
+## How to use it
 
-## How to use it ##
-
-### Step 1 : add project in your environment ### 
+### Step 1 : add project in your environment
 If your project is already versionned using git : 
 
 ````sh
@@ -19,7 +18,7 @@ git submodule add vagrant https://github.com/acseo/vagrant-puppet-lamp.git
 
 This command should create a vagrant folder in your project folder
 
-### Step 2 : launch the virtual machine ###
+### Step 2 : launch the virtual machine
 ````sh
 cd vagrant
 vagrant up
@@ -34,12 +33,12 @@ vagrant ssh
 
 And you should access to the machine in ssh.
 
-### Step 3 : configure the host to have access to the machine ####
+### Step 3 : configure the host to have access to the machine
 
 //TODO : configurer fichier hosts
 
 
-## Custonize settings ##
+## Custonize settings
 
 - Change the default OS : TODO
 

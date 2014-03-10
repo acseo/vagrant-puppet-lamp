@@ -16,18 +16,14 @@ node default {
   		}
 	}
 
-	database_user { 'root@33.33.33.%':
-		password_hash => mysql_password('root')
-	}		
-
-	database_grant { 'root@33.33.33.%/*.*':
-		privileges => ['all'] ,
-	}	
-
-
+	class { 'apache':  }
+	
+	apache::vhost { 'project.local':
+      port    => '80',
+      docroot => '/var/www/project',
+    }
+	
 	package {
-		"apache2":
-			ensure => present;	
 		"memcached":
 			ensure => present;							
 		"php5":
@@ -53,22 +49,6 @@ node default {
 			ensure => present,
 			require => Package["php5"];
 	}			
-	
-	service { "apache2":
-	    ensure  => "running",
-	    enable  => "true",
-	    require => Package["apache2"],
-	}	
-
-
-
-	exec { "a2enmod rewrite":
-		command => 'a2enmod rewrite',
-		path => ["/usr/bin", "/usr/sbin", "/usr/local/bin"],		
-		require => Package["apache2"],
-		notify  => Service["apache2"],
-	}
-	
     
     class { 'composer':
         target_dir      => '/usr/local/bin',
@@ -80,27 +60,5 @@ node default {
         curl_package    => 'curl',
         wget_package    => 'wget',
         composer_home   => '/root',
-    }
-    
-	file { '/usr/local/bin/vhost':
-		ensure => 'file',
-		source => 'puppet:///modules/site/common/vhost.sh',
-		owner  => 'root',
-		mode => '0744',
-	}	
-	
-	file { '/var/www/index.php':
-		ensure => 'file',
-		source => 'puppet:///modules/site/common/index.php',
-		owner  => 'root',
-		require => Package["apache2"],
-	}	
-	
-	file { '/var/www/index.html':
-		ensure => 'absent',
-		require => Package["apache2"],
-	}	
-	
-	
-    
+    }    
 }
