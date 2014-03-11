@@ -11,16 +11,22 @@ node default {
 
 	class { 'mysql::server':
   		config_hash => {
-  			'root_password' => 'root', 
+  			'root_password' => '{{MYSQL_ROOT_PASSWORD}}', 
   			'bind_address' => '0.0.0.0', 
   		}
 	}
 
+ 	mysql::db { '{{MYSQL_DB_NAME}}':
+      user     => '{{MYSQL_USER}}',
+      password => '{{MYSQL_PASSWORD}}',
+      host     => 'localhost',
+    }
+
 	class { 'apache':  }
 	
-	apache::vhost { 'project.local':
+	apache::vhost { '{{APACHE_HOST_NAME}}':
       port    => '80',
-      docroot => '/var/www/project',
+      docroot => '{{APACHE_PROJECT_PATH}}',
     }
 	
 	package {
