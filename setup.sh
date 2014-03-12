@@ -9,6 +9,7 @@ fi
 ## Default values
 GUEST_IP_ADDRESS=192.168.10.10
 APACHE_PROJECT_PATH=/var/www/project
+APACHE_PROJECT_WEB_PATH=/var/www/project/web
 APACHE_HOST_NAME=project.local
 MYSQL_ROOT_PASSWORD=root
 MYSQL_DB_NAME=project_db
@@ -23,6 +24,10 @@ read NEW_GUEST_IP_ADDRESS
 echo -n "Please enter the guest project path (default : $APACHE_PROJECT_PATH): "
 read NEW_APACHE_PROJECT_PATH
 [ -n "$NEW_APACHE_PROJECT_PATH" ] && APACHE_PROJECT_PATH=$NEW_APACHE_PROJECT_PATH
+
+echo -n "Please enter the guest project web path (default : $APACHE_PROJECT_WEB_PATH): "
+read NEW_APACHE_PROJECT_WEB_PATH
+[ -n "$NEW_APACHE_PROJECT_WEB_PATH" ] && APACHE_PROJECT_WEB_PATH=$NEW_APACHE_PROJECT_WEB_PATH
 
 echo -n "Please enter the website local name (default : $APACHE_HOST_NAME): "
 read NEW_APACHE_HOST_NAME
@@ -56,6 +61,9 @@ echo "OK"
 echo "Setting user values in configuration files... "
 sed -i "s,{{APACHE_PROJECT_PATH}},$APACHE_PROJECT_PATH,g" ./Vagrantfile
 sed -i "s,{{APACHE_PROJECT_PATH}},$APACHE_PROJECT_PATH,g" ./manifests/site.pp
+
+sed -i "s,{{APACHE_PROJECT_WEB_PATH}},$APACHE_WEB_PROJECT_PATH,g" ./Vagrantfile
+sed -i "s,{{APACHE_PROJECT_WEB_PATH}},$APACHE_WEB_PROJECT_PATH,g" ./manifests/site.pp
 
 sed -i "s,{{GUEST_IP_ADDRESS}},$GUEST_IP_ADDRESS,g" ./Vagrantfile
 sed -i "s,{{GUEST_IP_ADDRESS}},$GUEST_IP_ADDRESS,g" ./manifests/site.pp

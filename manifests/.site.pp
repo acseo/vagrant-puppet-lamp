@@ -21,13 +21,6 @@ node default {
       password => '{{MYSQL_PASSWORD}}',
       host     => 'localhost',
     }
-
-	class { 'apache':  }
-	
-	apache::vhost { '{{APACHE_HOST_NAME}}':
-      port    => '80',
-      docroot => '{{APACHE_PROJECT_PATH}}',
-    }
 	
 	package {
 		"memcached":
@@ -67,4 +60,16 @@ node default {
         wget_package    => 'wget',
         composer_home   => '/root',
     }    
+
+    class { 'apache': 
+        mpm_module => 'prefork' 
+    }
+	
+    class {  'apache::mod::php': }    
+    class {  'apache::mod::rewrite': }
+    
+    apache::vhost { '{{APACHE_HOST_NAME}}':
+      port    => '80',
+      docroot => '{{APACHE_PROJECT_WEB_PATH}}',
+    }
 }
