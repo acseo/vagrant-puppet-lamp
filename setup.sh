@@ -62,8 +62,8 @@ echo "Setting user values in configuration files... "
 sed -i "s,{{APACHE_PROJECT_PATH}},$APACHE_PROJECT_PATH,g" ./Vagrantfile
 sed -i "s,{{APACHE_PROJECT_PATH}},$APACHE_PROJECT_PATH,g" ./manifests/site.pp
 
-sed -i "s,{{APACHE_PROJECT_WEB_PATH}},$APACHE_WEB_PROJECT_PATH,g" ./Vagrantfile
-sed -i "s,{{APACHE_PROJECT_WEB_PATH}},$APACHE_WEB_PROJECT_PATH,g" ./manifests/site.pp
+sed -i "s,{{APACHE_PROJECT_WEB_PATH}},$APACHE_PROJECT_WEB_PATH,g" ./Vagrantfile
+sed -i "s,{{APACHE_PROJECT_WEB_PATH}},$APACHE_PROJECT_WEB_PATH,g" ./manifests/site.pp
 
 sed -i "s,{{GUEST_IP_ADDRESS}},$GUEST_IP_ADDRESS,g" ./Vagrantfile
 sed -i "s,{{GUEST_IP_ADDRESS}},$GUEST_IP_ADDRESS,g" ./manifests/site.pp
