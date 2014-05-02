@@ -9,12 +9,12 @@ fi
 ## Default values
 GUEST_IP_ADDRESS=192.168.10.10
 APACHE_PROJECT_PATH=/var/www/sobuzz
-APACHE_PROJECT_WEB_PATH=/var/www/sobuzz/htdocs
-APACHE_HOST_NAME=manager.so-buzz.local
+APACHE_PROJECT_WEB_PATH=/var/www/project/web
+APACHE_HOST_NAME=project.local
 MYSQL_ROOT_PASSWORD=root
-MYSQL_DB_NAME=sobuzz
-MYSQL_USER=root
-MYSQL_PASSWORD=root
+MYSQL_DB_NAME=project
+MYSQL_USER=project
+MYSQL_PASSWORD=password
 
 ## Prompt
 echo -n "Please enter the guest IP address (default : $GUEST_IP_ADDRESS): "
